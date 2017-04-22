@@ -12,7 +12,17 @@
     tools:context="com.fougas.decoder.MainActivity">
 
     <TextView
+        android:id="@+id/tv_translation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/btn_launchTranslation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go translate !"
+        android:layout_below="@+id/tv_translation"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp" />
 </RelativeLayout>

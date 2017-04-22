@@ -5,18 +5,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.fougas.decoder.Model.APIWhatsMate_BuildJSON.BuildJSON;
+
 /**
  * Created by Jean on 22/04/2017.
- * This class translate a file.txt
+ * This class translate a file.txt with the API WhatsMates
  */
+public class APIWhatsMate_TranslatorConnected {
 
-
-
-public class TranslatorConnected {
     /**
      * Sends out a WhatsApp message via WhatsMate WA Gateway.
      */
-    public static void translate(String fromLang, String toLang, String text) throws Exception {
+    public static String translate(String fromLang, String toLang, String text) throws Exception {
 
         // TODO: If you have your own Premium account credentials, put them down here:
         final String CLIENT_ID = "FREE_TRIAL_ACCOUNT";
@@ -24,20 +24,8 @@ public class TranslatorConnected {
         final String ENDPOINT = "http://api.whatsmate.net/v1/translation/translate";
 
 
+
         // TODO: Should have used a 3rd party library to make a JSON string from an object
-        String jsonPayload = new StringBuilder()
-                .append("{")
-                .append("\"fromLang\":\"")
-                .append(fromLang)
-                .append("\",")
-                .append("\"toLang\":\"")
-                .append(toLang)
-                .append("\",")
-                .append("\"text\":\"")
-                .append(text)
-                .append("\"")
-                .append("}")
-                .toString();
 
         URL url = new URL(ENDPOINT);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -48,7 +36,7 @@ public class TranslatorConnected {
         conn.setRequestProperty("Content-Type", "application/json");
 
         OutputStream os = conn.getOutputStream();
-        os.write(jsonPayload.getBytes());
+        os.write(BuildJSON(fromLang,toLang,text).getBytes());
         os.flush();
         os.close();
 
@@ -58,9 +46,13 @@ public class TranslatorConnected {
                 (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()
         ));
         String output;
+        String result = "";
         while ((output = br.readLine()) != null) {
             System.out.println(output);
+            result += output;
         }
         conn.disconnect();
+
+        return result;
     }
 }
