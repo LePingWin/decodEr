@@ -14,7 +14,7 @@ http://nvie.com/posts/a-successful-git-branching-model/
  - William Muller
  - Loïc Bine
 
-### The Team for file.txt translation : DEAD LINE : 28-04-2017 : In process
+### The Team for file.txt translation : DEAD LINE : 28-04-2017 : It's woooorking !
   - Antoine Horvat
   - Jean Still
   - William Muller
