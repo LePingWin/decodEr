@@ -11,12 +11,18 @@ import static com.fougas.decoder.Model.APIWhatsMate_BuildJSON.BuildJSON;
  * Created by Jean on 22/04/2017.
  * This class translate a file.txt with the API WhatsMates
  */
-public class APIWhatsMate_TranslatorConnected {
+public class APIWhatsMate_Translator {
 
     /**
      * Sends out a WhatsApp message via WhatsMate WA Gateway.
+     * And return the result of the translation
+     * @param fromLang Langage to translate
+     * @param toLang Langage of translation
+     * @param text text to translate
+     * @return <String> the text translated
+     * @throws Exception
      */
-    public static String translate(String fromLang, String toLang, String text) throws Exception {
+    public static String translate(Language fromLang, Language toLang, String text) throws Exception {
 
         // TODO: If you have your own Premium account credentials, put them down here:
         final String CLIENT_ID = "FREE_TRIAL_ACCOUNT";

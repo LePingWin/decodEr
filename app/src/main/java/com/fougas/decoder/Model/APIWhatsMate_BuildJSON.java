@@ -14,7 +14,7 @@ public class APIWhatsMate_BuildJSON {
      * @param pText text to translate
      * @return <String> the text translated
      */
-    public static String BuildJSON(String pFromLang, String pToLang, String pText){
+    public static String BuildJSON(Language pFromLang, Language pToLang, String pText){
 
          String jsonPayload = new StringBuilder()
                 .append("{")
