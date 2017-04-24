@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-import com.fougas.decoder.Model.APIWhatsMate_Translator;
-import com.fougas.decoder.Model.APIYandexTranslator_Translator;
+import com.fougas.decoder.Model.APIWhatsMateTranslator;
+import com.fougas.decoder.Model.APIYandexTranslatorTranslator;
 import com.fougas.decoder.Model.Language;
 import com.fougas.decoder.Model.ReadTxtFile;
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try
                 {
-                    m_tv_translationWhatsMate.setText( APIWhatsMate_Translator.translate(Language.ENGLISH,Language.FRENCH, ReadTxtFile.Read(res)));//m_ed_txtToTranslate.getText().toString()));
+                    m_tv_translationWhatsMate.setText( APIWhatsMateTranslator.translate(Language.ENGLISH,Language.FRENCH, ReadTxtFile.Read(res)));//m_ed_txtToTranslate.getText().toString()));
                 }
                 catch (Exception e)
                 {
@@ -90,10 +90,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try
                 {
-                    APIYandexTranslator_Translator.setKey("trnsl.1.1.20170422T153755Z.d4d22f7b0e646ae8.eff9111fe0b3162ecb363e0a1a962604da10d7b8");
+                    APIYandexTranslatorTranslator.setKey("trnsl.1.1.20170422T153755Z.d4d22f7b0e646ae8.eff9111fe0b3162ecb363e0a1a962604da10d7b8");
                     m_tv_translationYandex.setText((
-                            APIYandexTranslator_Translator.execute(
-                                APIYandexTranslator_Translator.execute( /*m_ed_txtToTranslate.getText().toString()*/ReadTxtFile.Read(res), Language.ENGLISH,Language.RUSSIAN)
+                            APIYandexTranslatorTranslator.execute(
+                                APIYandexTranslatorTranslator.execute( /*m_ed_txtToTranslate.getText().toString()*/ReadTxtFile.Read(res), Language.ENGLISH,Language.RUSSIAN)
                                 , Language.RUSSIAN
                                 , Language.FRENCH)));
                 }

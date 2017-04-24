@@ -5,13 +5,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.fougas.decoder.Model.APIWhatsMate_BuildJSON.BuildJSON;
+
 
 /**
  * Created by Jean on 22/04/2017.
  * This class translate a file.txt with the API WhatsMates
  */
-public class APIWhatsMate_Translator {
+public class APIWhatsMateTranslator {
 
     /**
      * Sends out a WhatsApp message via WhatsMate WA Gateway.
@@ -42,7 +42,7 @@ public class APIWhatsMate_Translator {
         conn.setRequestProperty("Content-Type", "application/json");
 
         OutputStream os = conn.getOutputStream();
-        os.write(BuildJSON(fromLang,toLang,text).getBytes());
+        os.write(APIWhatsMateBuildJSON.buildJSON(fromLang,toLang,text).getBytes());
         os.flush();
         os.close();
 

@@ -15,7 +15,7 @@ import org.json.simple.JSONValue;
  * Created by Jean on 22/04/2017.
  */
 
-public class APIYandex_YandexBase {
+public class APIYandexYandexBase {
     //Encoding type
     protected static final String ENCODING = "UTF-8";
 
