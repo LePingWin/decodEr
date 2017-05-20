@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">DecodEr</string>
+    <string name="appName">DecodEr</string>
+    <string name="aMainBtnLaunchTranslation">Launch translation</string>
+    <string name="aMainBtnHelp">Help</string>
+    <string name="aMainBtnParameters">Parameters</string>
+    <string-array name="aMainSpLanguage">
+        <item>Chinese</item>
+        <item>English</item>
+        <item>French</item>
+    </string-array>
 </resources>
