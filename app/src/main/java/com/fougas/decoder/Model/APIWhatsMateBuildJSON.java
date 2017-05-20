@@ -5,7 +5,7 @@ package com.fougas.decoder.Model;
  * Class to build file.json to use API WhatsMate
  */
 
-public class APIWhatsMate_BuildJSON {
+public class APIWhatsMateBuildJSON {
 
     /**
      * Build a file.json for the API Whatsmate
@@ -14,7 +14,7 @@ public class APIWhatsMate_BuildJSON {
      * @param pText text to translate
      * @return <String> the text translated
      */
-    public static String BuildJSON(Language pFromLang, Language pToLang, String pText){
+    public static String buildJSON(Language pFromLang, Language pToLang, String pText){
 
          String jsonPayload = new StringBuilder()
                 .append("{")

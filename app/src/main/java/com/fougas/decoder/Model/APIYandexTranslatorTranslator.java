@@ -16,7 +16,7 @@ import java.net.URLEncoder;
  * This class translate a file.txt with the API MicrosoftTranslator
  */
 
-public class APIYandexTranslator_Translator extends APIYandex_YandexBase
+public class APIYandexTranslatorTranslator extends APIYandexYandexBase
 {
 
     private static final String SERVICE_URL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
@@ -26,7 +26,7 @@ public class APIYandexTranslator_Translator extends APIYandex_YandexBase
 
 
     //prevent instantiation
-    private APIYandexTranslator_Translator(){};
+    private APIYandexTranslatorTranslator(){};
 
 
     /**
