@@ -8,4 +8,10 @@
         <item>English</item>
         <item>French</item>
     </string-array>
+    <string name="aEndCallEnded">Call ended</string>
+    <string name="aEndTvSave">What do you want to save ?</string>
+    <string name="aEndSwSaveTranscription">Transcription</string>
+    <string name="aEndSwSaveCall">Call</string>
+    <string name="aEndSwSaveTranslation">Translation</string>
+    <string name="aEndBtnValidate">Validate</string>
 </resources>
