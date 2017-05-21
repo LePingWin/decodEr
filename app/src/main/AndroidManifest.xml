@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TranslationActivity" />
-        <activity android:name=".EndCallActivity"></activity>
+        <activity android:name=".EndCallActivity" />
+        <activity android:name=".ParameterActivity"></activity>
     </application>
 
 </manifest>

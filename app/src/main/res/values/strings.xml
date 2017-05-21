@@ -3,7 +3,7 @@
     <string name="aMainBtnLaunchTranslation">Launch translation</string>
     <string name="aMainBtnHelp">Help</string>
     <string name="aMainBtnParameters">Parameters</string>
-    <string-array name="aMainSpLanguage">
+    <string-array name="spLanguage">
         <item>Chinese</item>
         <item>English</item>
         <item>French</item>
@@ -14,4 +14,8 @@
     <string name="aEndSwSaveCall">Call</string>
     <string name="aEndSwSaveTranslation">Translation</string>
     <string name="aEndBtnValidate">Validate</string>
+    <string name="aParaTvTitle">Parameters</string>
+    <string name="aParaTvSavePath">Save path</string>
+    <string name="aParaTvTranslationLanguage">Language of translation</string>
+    <string name="sharedPreferencesPath">Path</string>
 </resources>
