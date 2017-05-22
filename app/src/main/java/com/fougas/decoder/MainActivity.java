@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -54,7 +55,7 @@ public class MainActivity extends Activity {
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
         if (sharedPreferences.getString(getString(R.string.sharedPreferencesPath), "").isEmpty()) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.sharedPreferencesPath), "test");
+            editor.putString(getString(R.string.sharedPreferencesPath), Environment.getExternalStorageDirectory().getPath() + "/decodErSaves");
             editor.apply();
         }
     }
