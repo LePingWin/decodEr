@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -16,13 +16,17 @@ import android.widget.Spinner;
  */
 public class MainActivity extends Activity {
 
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initSavePath();
-        fillSpinner();
+        sharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
+
+        initSharedPreferences();
+        initSpinner();
 
         Button aMainBtnHelp = (Button) findViewById(R.id.aMainBtnHelp);
         Button aMainBtnLaunchTranslation = (Button) findViewById(R.id.aMainBtnLaunchTranslation);
@@ -49,13 +53,20 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * Init the save path in the shared preferences
+     * Init the shared preferences
      */
-    private void initSavePath() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
+    private void initSharedPreferences() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         if (sharedPreferences.getString(getString(R.string.sharedPreferencesPath), "").isEmpty()) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.sharedPreferencesPath), Environment.getExternalStorageDirectory().getPath() + "/decodErSaves");
+            editor.putString(getString(R.string.sharedPreferencesPath), "/decodErSaves"); // TODO pour choper la racine Environment.getExternalStorageDirectory().getPath() puis ce qu'il y a dans la variable path
+            editor.apply();
+        }
+        if (sharedPreferences.getString(getString(R.string.sharedPreferencesTranslationLanguage), "").isEmpty()) {
+            editor.putString(getString(R.string.sharedPreferencesTranslationLanguage), getResources().getStringArray(R.array.spLanguage)[0]);
+            editor.apply();
+        }
+        if (sharedPreferences.getString(getString(R.string.sharedPreferencesInterlocutorLanguage), "").isEmpty()) {
+            editor.putString(getString(R.string.sharedPreferencesInterlocutorLanguage), getResources().getStringArray(R.array.spLanguage)[0]);
             editor.apply();
         }
     }
@@ -84,12 +95,29 @@ public class MainActivity extends Activity {
     }
 
     /**
-     * Fill the spinner with an Array String
+     * Init the spinner
      */
-    private void fillSpinner() {
+    private void initSpinner() {
+        int spinnerPosition;
         Spinner aMainSpLanguage = (Spinner) findViewById(R.id.aMainSpLanguage);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spLanguage, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         aMainSpLanguage.setAdapter(adapter);
+
+        spinnerPosition = adapter.getPosition(sharedPreferences.getString(getString(R.string.sharedPreferencesInterlocutorLanguage), ""));
+        aMainSpLanguage.setSelection(spinnerPosition);
+
+        aMainSpLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(getString(R.string.sharedPreferencesInterlocutorLanguage), parentView.getSelectedItem().toString());
+                editor.apply();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
     }
 }

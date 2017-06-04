@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     tools:context="com.fougas.decoder.ParameterActivity">
 
     <TextView
@@ -49,11 +50,24 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/aParaEvSavePath"
-        android:layout_margin="10dp"
+        android:id="@+id/aParaEtSavePath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/aParaTvSavePath"
+        android:layout_margin="10dp"
+        android:inputType="text"
+        android:maxLines="1"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/aParaBtnSavePath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aParaEtSavePath"
+        android:layout_margin="10dp"
+        android:text="@string/aParaTvSaveNewPath"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:visibility="invisible" />
 </RelativeLayout>

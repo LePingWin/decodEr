@@ -20,4 +20,11 @@
     <string name="aParaTvSavePath">Save path</string>
     <string name="aParaTvTranslationLanguage">Language of translation</string>
     <string name="sharedPreferencesPath">Path</string>
+    <string name="sharedPreferencesTranslationLanguage">TranslationLanguage</string>
+    <string name="sharedPreferencesInterlocutorLanguage">InterlocutorLanguage</string>
+    <string name="sharedPreferencesSaveCall">SaveCall</string>
+    <string name="sharedPreferencesSaveTranscription">SaveTranscription</string>
+    <string name="sharedPreferencesSaveTranslation">SaveTranslation</string>
+    <string name="aParaTvSaveNewPath">Save new path</string>
+    <string name="aParaTvSaveNewPathSaved">New path saved</string>
 </resources>
