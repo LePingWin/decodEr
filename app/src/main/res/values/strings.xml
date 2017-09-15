@@ -27,4 +27,8 @@
     <string name="sharedPreferencesSaveTranslation">SaveTranslation</string>
     <string name="aParaTvSaveNewPath">Save new path</string>
     <string name="aParaTvSaveNewPathSaved">New path saved</string>
+    <string name="aTransTvTitle">Translation</string>
+    <string name="aTransTvSourceText">Text to translate</string>
+    <string name="aTransTvResponseText">Response</string>
+    <string name="aTransBtnLaunch">Launch translation</string>
 </resources>

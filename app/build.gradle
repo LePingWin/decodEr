@@ -10,12 +10,23 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true //important
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/io.netty.versions.properties'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'project.properties'
     }
 }
 
@@ -24,4 +35,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    compile ('com.google.cloud:google-cloud-translate:1.4.0') {
+        exclude group: 'org.json'
+        exclude group: 'org.apache.httpcomponents'
+        exclude group: 'io.grpc', module: 'grpc-all'
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'com.google.api-client', module: 'google-api-client-appengine'
+    }
 }

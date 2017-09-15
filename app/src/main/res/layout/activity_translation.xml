@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context="com.fougas.decoder.TranslationActivity">
+
+    <TextView
+        android:id="@+id/aTransTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/aTransTvTitle"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/aTransTvSourceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/aTransTvSourceText"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/aTransEtSourceText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aTransTvSourceText"
+        android:layout_margin="10dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/aTransTvResponseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aTransEtSourceText"
+        android:layout_marginTop="20dp"
+        android:text="@string/aTransTvResponseText"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/aTransEtResponseText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aTransTvResponseText"
+        android:layout_margin="10dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/aTransBtnLaunch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aTransEtResponseText"
+        android:layout_margin="10dp"
+        android:text="@string/aTransBtnLaunch"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:visibility="visible" />
+</RelativeLayout>
