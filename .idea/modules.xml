@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ALCATEL.iml" filepath="$PROJECT_DIR$/ALCATEL.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/decodEr.iml" filepath="$PROJECT_DIR$/decodEr.iml" />
     </modules>

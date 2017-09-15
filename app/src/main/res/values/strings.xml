@@ -27,4 +27,7 @@
     <string name="sharedPreferencesSaveTranslation">SaveTranslation</string>
     <string name="aParaTvSaveNewPath">Save new path</string>
     <string name="aParaTvSaveNewPathSaved">New path saved</string>
+    <string name="aDispTvTime">00:00:00</string>
+    <string name="aDispBtnParameters">Parameters</string>
+    <string name="aDispBtnClose">Close</string>
 </resources>

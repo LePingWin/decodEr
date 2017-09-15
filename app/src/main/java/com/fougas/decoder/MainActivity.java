@@ -83,7 +83,8 @@ public class MainActivity extends Activity {
      * On click on the button to launch translation
      */
     private void onClickBtnLaunchTranslation() {
-
+        Intent intent = new Intent(this, DisplayActivity.class);
+        startActivity(intent);
     }
 
     /**
