@@ -10,16 +10,16 @@
         android:label="@string/appName"
         android:supportsRtl="true"
         android:theme="@style/MaterialCustom">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TranslationActivity" />
-        <activity android:name=".EndCallActivity" />
-        <activity android:name=".ParameterActivity"></activity>
+        <activity android:name=".Activity.ExampleTranslationActivity" />
+        <activity android:name=".Activity.EndCallActivity" />
+        <activity android:name=".Activity.ParameterActivity"></activity>
     </application>
 
 </manifest>
