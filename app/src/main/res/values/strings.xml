@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">DecodEr</string>
+    <string name="appName">DecodEr</string>
+    <string name="aMainTvInterlocutor">Interlocuteur\'s language</string>
+    <string name="aMainBtnLaunchTranslation">Launch translation</string>
+    <string name="aMainBtnHelp">Help</string>
+    <string name="aMainBtnParameters">Parameters</string>
+    <string-array name="spLanguage">
+        <item>Chinese</item>
+        <item>English</item>
+        <item>French</item>
+    </string-array>
+    <string name="aEndCallEnded">Call ended</string>
+    <string name="aEndTvSave">What do you want to save ?</string>
+    <string name="aEndSwSaveTranscription">Transcription</string>
+    <string name="aEndSwSaveCall">Call</string>
+    <string name="aEndSwSaveTranslation">Translation</string>
+    <string name="aEndBtnCancel">Cancel</string>
+    <string name="aEndBtnValidate">Validate</string>
+    <string name="aParaTvTitle">Parameters</string>
+    <string name="aParaTvSavePath">Save path</string>
+    <string name="aParaTvTranslationLanguage">Language of translation</string>
+    <string name="sharedPreferencesPath">Path</string>
+    <string name="sharedPreferencesTranslationLanguage">TranslationLanguage</string>
+    <string name="sharedPreferencesInterlocutorLanguage">InterlocutorLanguage</string>
+    <string name="sharedPreferencesSaveCall">SaveCall</string>
+    <string name="sharedPreferencesSaveTranscription">SaveTranscription</string>
+    <string name="sharedPreferencesSaveTranslation">SaveTranslation</string>
+    <string name="aParaTvSaveNewPath">Save new path</string>
+    <string name="aParaTvSaveNewPathSaved">New path saved</string>
 </resources>
