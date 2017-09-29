@@ -32,4 +32,8 @@
     <string name="aDispBtnParameters">Load</string>
     <string name="aDispBtnListen">Listen</string>
     <string name="aDispBtnClose">Close</string>
+    <string name="aTransTvTitle">Example Translation</string>
+    <string name="aTransTvSourceText">Text to translate</string>
+    <string name="aTransTvResponseText">Response</string>
+    <string name="aTransBtnLaunch">Launch translation</string>
 </resources>

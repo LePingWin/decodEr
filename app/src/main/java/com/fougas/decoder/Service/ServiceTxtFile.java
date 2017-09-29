@@ -1,4 +1,4 @@
-package com.fougas.decoder;
+package com.fougas.decoder.Service;
 
 import android.content.Context;
 import android.content.res.Resources;
