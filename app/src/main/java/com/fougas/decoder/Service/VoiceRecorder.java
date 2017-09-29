@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fougas.decoder;
+package com.fougas.decoder.Service;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;

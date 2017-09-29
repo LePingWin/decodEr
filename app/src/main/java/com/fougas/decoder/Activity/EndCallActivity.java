@@ -1,4 +1,4 @@
-package com.fougas.decoder;
+package com.fougas.decoder.Activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.fougas.decoder.R;
 
 public class EndCallActivity extends Activity {
 
