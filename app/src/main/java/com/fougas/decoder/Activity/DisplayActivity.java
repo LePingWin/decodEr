@@ -7,27 +7,40 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.*;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.SpeechService;
 import com.fougas.decoder.Service.VoiceRecorder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class DisplayActivity extends Activity  {
+import static android.content.ContentValues.TAG;
+
+public class DisplayActivity extends Activity {
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
 
     private static final String STATE_RESULTS = "results";
 
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
+    private final int FILE_SELECT_CODE = 1;
 
     private SpeechService mSpeechService;
 
@@ -150,11 +163,54 @@ public class DisplayActivity extends Activity  {
 
     /**
      * Allow to fill the textview with a string
+     *
      * @param text The string that will be displayed
      */
-    private void fillTextView(String text){
+    private void fillTextView(String text) {
         TextView textView = (TextView) findViewById(R.id.aDispTvText);
         textView.setText(text);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Uri uri = null;
+        // Check which request we're responding to
+        if (requestCode == FILE_SELECT_CODE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // User pick the file
+                if (data != null) {
+                    uri = data.getData();
+                    fillTextView(readTextFile(uri));
+                }
+
+            } else {
+                Log.i(TAG, data.toString());
+            }
+        }
+    }
+
+    private String readTextFile(Uri uri) {
+        BufferedReader reader = null;
+        StringBuilder builder = new StringBuilder();
+        String line;
+        try {
+            reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri)));
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return builder.toString();
     }
 
 
@@ -247,9 +303,9 @@ public class DisplayActivity extends Activity  {
     }
 
     private void showPermissionMessageDialog() {
-       // MessageDialogFragment
-         //       .newInstance(getString(R.string.permission_message))
-           //     .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
+        // MessageDialogFragment
+        //       .newInstance(getString(R.string.permission_message))
+        //     .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
     }
 
 
@@ -292,51 +348,51 @@ public class DisplayActivity extends Activity  {
                 }
             };
 
-private static class ViewHolder extends RecyclerView.ViewHolder {
+    private static class ViewHolder extends RecyclerView.ViewHolder {
 
-    TextView text;
+        TextView text;
 
-    ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-        super(inflater.inflate(R.layout.item_result, parent, false));
-        text = (TextView) itemView.findViewById(R.id.text);
-    }
-
-}
-
-private static class ResultAdapter extends RecyclerView.Adapter<ViewHolder> {
-
-    private final ArrayList<String> mResults = new ArrayList<>();
-
-    ResultAdapter(ArrayList<String> results) {
-        if (results != null) {
-            mResults.addAll(results);
+        ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.item_result, parent, false));
+            text = (TextView) itemView.findViewById(R.id.text);
         }
+
     }
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()), parent);
-    }
+    private static class ResultAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.text.setText(mResults.get(position));
-    }
+        private final ArrayList<String> mResults = new ArrayList<>();
 
-    @Override
-    public int getItemCount() {
-        return mResults.size();
-    }
+        ResultAdapter(ArrayList<String> results) {
+            if (results != null) {
+                mResults.addAll(results);
+            }
+        }
 
-    void addResult(String result) {
-        mResults.add(0, result);
-        notifyItemInserted(0);
-    }
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()), parent);
+        }
 
-    public ArrayList<String> getResults() {
-        return mResults;
-    }
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            holder.text.setText(mResults.get(position));
+        }
 
-}
+        @Override
+        public int getItemCount() {
+            return mResults.size();
+        }
+
+        void addResult(String result) {
+            mResults.add(0, result);
+            notifyItemInserted(0);
+        }
+
+        public ArrayList<String> getResults() {
+            return mResults;
+        }
+
+    }
 
 }
