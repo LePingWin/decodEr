@@ -8,50 +8,66 @@
     tools:context="com.fougas.decoder.EndCallActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
-        <Button
-            android:id="@+id/aDispBtnClose"
-            android:text="@string/aDispBtnClose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/aDispBtnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/aDispBtnClose" />
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
-        <TextView
-            android:id="@+id/aDispTvTime"
-            android:text="@string/aDispTvTime"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            <!--
+                <TextView
+                    android:id="@+id/aDispTvTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/aDispTvTime"
+                    android:textSize="15sp" />
+              -->
+            <Button
+                android:id="@+id/aDispBtnListen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/aDispBtnListen" />
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
-        <Button
-            android:id="@+id/aDispBtnParameters"
-            android:text="@string/aDispBtnParameters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/aDispBtnParameters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/aDispBtnParameters" />
         </FrameLayout>
     </LinearLayout>
 
     <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    </ScrollView>
+        android:id="@+id/aDispSvText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/aDispTvText"/>
+        </ScrollView>
 
 </LinearLayout>
