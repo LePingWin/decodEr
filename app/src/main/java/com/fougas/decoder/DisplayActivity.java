@@ -8,12 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.BufferedInputStream;
+import com.fougas.decoder.Activity.MainActivity;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -111,7 +109,7 @@ public class DisplayActivity extends Activity {
     private String readTextFile(Uri uri) {
         BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
-        String line = "";
+        String line;
         try {
             reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri)));
             while ((line = reader.readLine()) != null) {
