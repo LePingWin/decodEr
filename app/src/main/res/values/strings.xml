@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">DecodEr</string>
     <string name="appName">DecodEr</string>
     <string name="aMainTvInterlocutor">Interlocuteur\'s language</string>
     <string name="aMainBtnLaunchTranslation">Launch translation</string>
