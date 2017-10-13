@@ -1,12 +1,10 @@
 package com.fougas.decoder.Activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -159,7 +157,7 @@ public class DisplayActivity extends AppCompatActivity implements MessageDialogF
                 }
 
             } else {
-                Log.i(TAG, data.toString());
+                Log.i("DEBUG", data.toString());
             }
         }
     }
@@ -187,26 +185,6 @@ public class DisplayActivity extends AppCompatActivity implements MessageDialogF
         return builder.toString();
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Prepare Cloud Speech API
-        bindService(new Intent(this, SpeechService.class), mServiceConnection, BIND_AUTO_CREATE);
-
-        // Start listening to voices
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_GRANTED) {
-            startVoiceRecorder();
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.RECORD_AUDIO)) {
-            showPermissionMessageDialog();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
-                    REQUEST_RECORD_AUDIO_PERMISSION);
-        }
-    }
 
     /**
      * Allow to fill the textview with a string
