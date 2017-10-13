@@ -36,4 +36,5 @@
     <string name="aTransTvSourceText">Text to translate</string>
     <string name="aTransTvResponseText">Response</string>
     <string name="aTransBtnLaunch">Launch translation</string>
+    <string name="permission_message">This app needs to record audio and recognize your speech.</string>
 </resources>

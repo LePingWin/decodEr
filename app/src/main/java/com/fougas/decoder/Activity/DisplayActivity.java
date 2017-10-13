@@ -1,31 +1,28 @@
 package com.fougas.decoder.Activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.*;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.SpeechService;
 import com.fougas.decoder.Service.VoiceRecorder;
 
-import java.util.ArrayList;
-
-public class DisplayActivity extends Activity  {
+public class DisplayActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
-
-    private static final String STATE_RESULTS = "results";
 
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
 
@@ -36,7 +33,6 @@ public class DisplayActivity extends Activity  {
 
         @Override
         public void onVoiceStart() {
-            showStatus(true);
             if (mSpeechService != null) {
                 mSpeechService.startRecognizing(mVoiceRecorder.getSampleRate());
             }
@@ -51,23 +47,13 @@ public class DisplayActivity extends Activity  {
 
         @Override
         public void onVoiceEnd() {
-            showStatus(false);
             if (mSpeechService != null) {
                 mSpeechService.finishRecognizing();
             }
         }
-
     };
-
-    // Resource caches
-    private int mColorHearing;
-    private int mColorNotHearing;
-
     // View references
-    private TextView mStatus;
     private TextView mText;
-    private ResultAdapter mAdapter;
-    private RecyclerView mRecyclerView;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -75,7 +61,6 @@ public class DisplayActivity extends Activity  {
         public void onServiceConnected(ComponentName componentName, IBinder binder) {
             mSpeechService = SpeechService.from(binder);
             mSpeechService.addListener(mSpeechServiceListener);
-            mStatus.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -112,16 +97,10 @@ public class DisplayActivity extends Activity  {
                 onClickBtnListen();
             }
         });
-
-        final Resources resources = getResources();
-        final Resources.Theme theme = getTheme();
+        //TODO : implements button LOAD audio file
+        //mSpeechService.recognizeInputStream(getResources().openRawResource(R.raw.audio));
 
         mText = (TextView) findViewById(R.id.text);
-
-        final ArrayList<String> results = savedInstanceState == null ? null :
-                savedInstanceState.getStringArrayList(STATE_RESULTS);
-        mAdapter = new ResultAdapter(results);
-
 
     }
 
@@ -145,7 +124,17 @@ public class DisplayActivity extends Activity  {
      * On click on the button listen
      */
     private void onClickBtnListen() {
-        // TODO Call listen from google
+        // Start listening to voices
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                == PackageManager.PERMISSION_GRANTED) {
+            startVoiceRecorder();
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.RECORD_AUDIO)) {
+            showPermissionMessageDialog();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
+                    REQUEST_RECORD_AUDIO_PERMISSION);
+        }
     }
 
     /**
@@ -161,21 +150,8 @@ public class DisplayActivity extends Activity  {
     @Override
     protected void onStart() {
         super.onStart();
-
         // Prepare Cloud Speech API
         bindService(new Intent(this, SpeechService.class), mServiceConnection, BIND_AUTO_CREATE);
-
-        // Start listening to voices
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_GRANTED) {
-            startVoiceRecorder();
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.RECORD_AUDIO)) {
-            showPermissionMessageDialog();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
-                    REQUEST_RECORD_AUDIO_PERMISSION);
-        }
     }
 
     @Override
@@ -194,9 +170,6 @@ public class DisplayActivity extends Activity  {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (mAdapter != null) {
-            outState.putStringArrayList(STATE_RESULTS, mAdapter.getResults());
-        }
     }
 
     @Override
@@ -247,26 +220,16 @@ public class DisplayActivity extends Activity  {
     }
 
     private void showPermissionMessageDialog() {
-       // MessageDialogFragment
-         //       .newInstance(getString(R.string.permission_message))
-           //     .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
+        MessageDialogFragment
+               .newInstance(getString(R.string.permission_message))
+              .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
     }
 
-
-    private void showStatus(final boolean hearingVoice) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mStatus.setTextColor(hearingVoice ? mColorHearing : mColorNotHearing);
-            }
-        });
-    }
-
-   /* @Override
+    @Override
     public void onMessageDialogDismissed() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
                 REQUEST_RECORD_AUDIO_PERMISSION);
-    }*/
+    }
 
     private final SpeechService.Listener mSpeechServiceListener =
             new SpeechService.Listener() {
@@ -281,62 +244,15 @@ public class DisplayActivity extends Activity  {
                             public void run() {
                                 if (isFinal) {
                                     mText.setText(null);
-                                    mAdapter.addResult(text);
-                                    mRecyclerView.smoothScrollToPosition(0);
                                 } else {
                                     mText.setText(text);
+
                                 }
+                                Log.d("TRAD",text);
                             }
                         });
                     }
                 }
             };
-
-private static class ViewHolder extends RecyclerView.ViewHolder {
-
-    TextView text;
-
-    ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-        super(inflater.inflate(R.layout.item_result, parent, false));
-        text = (TextView) itemView.findViewById(R.id.text);
-    }
-
-}
-
-private static class ResultAdapter extends RecyclerView.Adapter<ViewHolder> {
-
-    private final ArrayList<String> mResults = new ArrayList<>();
-
-    ResultAdapter(ArrayList<String> results) {
-        if (results != null) {
-            mResults.addAll(results);
-        }
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()), parent);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.text.setText(mResults.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mResults.size();
-    }
-
-    void addResult(String result) {
-        mResults.add(0, result);
-        notifyItemInserted(0);
-    }
-
-    public ArrayList<String> getResults() {
-        return mResults;
-    }
-
-}
 
 }

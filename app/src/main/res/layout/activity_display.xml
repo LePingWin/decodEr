@@ -71,7 +71,7 @@
                 android:id="@+id/aDispTvText"/>
         </ScrollView>
 
-    <android.support.design.widget.CoordinatorLayout
+    <!-- <android.support.design.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -103,6 +103,6 @@
                 app:behavior_overlapTop="128dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </android.support.design.widget.CoordinatorLayout> -->
 
 </LinearLayout>
