@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".EndCallActivity" />
         <activity android:name=".ParameterActivity" />
-        <activity android:name=".DisplayActivity"></activity>
+        <activity android:name=".DisplayActivity" />
+        <activity android:name=".HelpActivity" />
     </application>
 
 </manifest>

@@ -31,4 +31,42 @@
     <string name="aDispTvTime">00:00:00</string>
     <string name="aDispBtnParameters">Parameters</string>
     <string name="aDispBtnClose">Close</string>
+    <string name="aHelpFaq">
+        <b>F.A.Q. - Foire Aux Questions</b>\n
+        \n
+        \n
+        1) A quoi sert cette application decodEr \? \n
+        <i>Notre application sert à traduire un appel sous format texte sur son téléphone.</i>\n
+        \n
+        2) Comment traduire / choisir la langue ? \n
+        <i>Il faut choisir la langue de l\'interlocuteur dans la page d\'accueil ou dans les paramètres de l\'application.</i>\n
+        \n
+        3) A quoi correspond le chemin dans les paramètres ?\n
+        <i>Ce chemin correspond au dossier où le fichier texte de la traduction de l\' appel sera enregistré.</i>\n
+        \n
+        4) A quoi sert le timer situé au dessus de la traduction ?\n
+        <i>Le timer correspond à la durée  de l\'appel.</i>\n
+        \n
+        5) Quelle version d\'android decoder utilise t elle ? \n
+        <i>Android 21.</i>\n
+
+        \n
+        \n
+        Application decodEr crée par \n
+         - Loic Bine, \n
+         - Quentin Dell, \n
+         - Antoine Horvat, \n
+         - Sarah Mesbah, \n
+         - William Muller, \n
+         - et Jean Still. \n
+        Elle a été réalisé dans le cadre du projet Alcatel de deuxième année du CNAM Grand Est. \n
+        \n
+        \n
+        <i>#+1 Si vous avez lu jusqu\'ici !</i>\n
+        \n
+        \n
+        <b>Conservatoire National des Arts Métiers\n
+        2A Promotion 2016-2019</b>\n
+    </string>
+    <string name="aHelpBtnCancel">Come back</string>
 </resources>
