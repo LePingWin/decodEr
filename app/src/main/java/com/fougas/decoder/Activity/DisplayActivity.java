@@ -1,10 +1,13 @@
 package com.fougas.decoder.Activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
@@ -21,10 +24,15 @@ import com.fougas.decoder.R;
 import com.fougas.decoder.Service.SpeechService;
 import com.fougas.decoder.Service.VoiceRecorder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class DisplayActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
 
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
+    private final int FILE_SELECT_CODE = 1;
 
     private SpeechService mSpeechService;
 
@@ -124,6 +132,69 @@ public class DisplayActivity extends AppCompatActivity implements MessageDialogF
      * On click on the button listen
      */
     private void onClickBtnListen() {
+        // Start listening to voices
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                == PackageManager.PERMISSION_GRANTED) {
+            startVoiceRecorder();
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.RECORD_AUDIO)) {
+            showPermissionMessageDialog();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
+                    REQUEST_RECORD_AUDIO_PERMISSION);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Uri uri = null;
+        // Check which request we're responding to
+        if (requestCode == FILE_SELECT_CODE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // User pick the file
+                if (data != null) {
+                    uri = data.getData();
+                    fillTextView(readTextFile(uri));
+                }
+
+            } else {
+                Log.i(TAG, data.toString());
+            }
+        }
+    }
+
+    private String readTextFile(Uri uri) {
+        BufferedReader reader = null;
+        StringBuilder builder = new StringBuilder();
+        String line;
+        try {
+            reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri)));
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return builder.toString();
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Prepare Cloud Speech API
+        bindService(new Intent(this, SpeechService.class), mServiceConnection, BIND_AUTO_CREATE);
+
         // Start listening to voices
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED) {
