@@ -1,4 +1,4 @@
-package com.fougas.decoder;
+package com.fougas.decoder.Activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+
+import com.fougas.decoder.R;
 
 public class ParameterActivity extends Activity {
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fougas.decoder.EndCallActivity">
+    tools:context="com.fougas.decoder.Activity.EndCallActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
