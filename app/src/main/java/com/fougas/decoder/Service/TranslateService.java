@@ -49,7 +49,7 @@ public class TranslateService extends AsyncTask<Object, Object, Object> {
             response = translation.getTranslatedText();
         }
         catch ( Exception e){
-            response = "ERROR 400 API KEY not valid";//TODO change exception message
+            response = "ERROR";//TODO change exception message
         }
         return response;
     }
