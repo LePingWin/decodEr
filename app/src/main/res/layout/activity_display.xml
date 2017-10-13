@@ -63,13 +63,14 @@
     <ScrollView
         android:id="@+id/aDispSvText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:textSize="12sp"
-                android:id="@+id/aDispTvText"/>
-        </ScrollView>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/aDispTvText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="12sp" />
+    </ScrollView>
 
     <!-- <android.support.design.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

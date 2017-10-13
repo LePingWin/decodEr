@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.fougas.decoder.Model.Langage;
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.Interface.IOnTaskCompleted;
 import com.fougas.decoder.Service.TranslateService;
@@ -48,7 +49,7 @@ public class ExampleTranslationActivity extends Activity implements IOnTaskCompl
                             new TranslateService(
                                     listener
                                     , aTransEtSourceText.getText().toString()
-                                    , sharedPreferences.getString(getString(R.string.sharedPreferencesTranslationLanguage), ""));
+                                    , Langage.getELanguage((sharedPreferences.getString(getString(R.string.sharedPreferencesTranslationLanguage), ""))));
                     taskGoogleAPITranslate.execute();
                 } catch (Exception e) {
                     e.printStackTrace();
