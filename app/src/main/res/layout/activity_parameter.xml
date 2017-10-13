@@ -55,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/aParaTvSavePath"
         android:layout_margin="10dp"
-        android:maxLines="5"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 
