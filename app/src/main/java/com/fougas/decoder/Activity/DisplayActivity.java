@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.SpeechService;
 import com.fougas.decoder.Service.VoiceRecorder;
@@ -30,8 +31,8 @@ import java.nio.charset.StandardCharsets;
 public class DisplayActivity extends FragmentActivity implements MessageDialogFragment.Listener {
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
 
+
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
-    private final int FILE_SELECT_CODE = 1;
 
     private SpeechService mSpeechService;
 
@@ -123,8 +124,10 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
      * On click on the button parameters
      */
     private void onClickBtnParameters() {
-        Intent intent = new Intent(this, ParameterActivity.class);
-        startActivity(intent);
+        int code = 1;
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("text/*");
+        startActivityForResult(intent, code);
     }
 
     /**
@@ -146,9 +149,10 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Uri uri = null;
+        int code = 1;
+        Uri uri;
         // Check which request we're responding to
-        if (requestCode == FILE_SELECT_CODE) {
+        if (requestCode == code) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 // User pick the file
@@ -156,7 +160,6 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                     uri = data.getData();
                     fillTextView(readTextFile(uri));
                 }
-
             } else {
                 Log.i("DEBUG", data.toString());
             }
@@ -189,9 +192,10 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
 
     /**
      * Allow to fill the textview with a string
+     *
      * @param text The string that will be displayed
      */
-    private void fillTextView(String text){
+    private void fillTextView(String text) {
         TextView textView = (TextView) findViewById(R.id.aDispTvText);
         textView.setText(text);
     }
@@ -271,8 +275,8 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
 
     private void showPermissionMessageDialog() {
         MessageDialogFragment
-               .newInstance(getString(R.string.permission_message))
-              .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
+                .newInstance(getString(R.string.permission_message))
+                .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
     }
 
     @Override
@@ -296,7 +300,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                                     mText.setText(null);
                                 } else {
                                     mText.setText(text);
-                                    Log.d("TRAD",text);
+                                    Log.d("TRAD", text);
 
                                 }
 
