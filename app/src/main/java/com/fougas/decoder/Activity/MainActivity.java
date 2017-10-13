@@ -1,4 +1,4 @@
-package com.fougas.decoder;
+package com.fougas.decoder.Activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import com.fougas.decoder.R;
 
 /**
  * Main Activity
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
      * On click on the button to launch translation
      */
     private void onClickBtnLaunchTranslation() {
-        Intent intent = new Intent(this, DisplayActivity.class);
+        Intent intent = new Intent(this, DisplayActivity.class); //TODO create final View
         startActivity(intent);
     }
 

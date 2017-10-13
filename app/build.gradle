@@ -51,11 +51,26 @@ android {
             minifyEnabled false
             multiDexEnabled true
         }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.2'
         resolutionStrategy.force "com.android.support:support-annotations:$supportLibraryVersion"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/io.netty.versions.properties'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'project.properties'
     }
 }
 
@@ -101,6 +116,16 @@ dependencies {
     compile('com.google.auth:google-auth-library-oauth2-http:0.7.0') {
         exclude module: 'httpclient'
     }
+
+    // Google API Translate
+    compile ('com.google.cloud:google-cloud-translate:1.4.0') {
+        exclude group: 'org.json'
+        exclude group: 'org.apache.httpcomponents'
+        exclude group: 'io.grpc', module: 'grpc-all'
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'com.google.api-client', module: 'google-api-client-appengine'
+    }
+
 
     // Tests
     compile 'javax.annotation:javax.annotation-api:1.2'

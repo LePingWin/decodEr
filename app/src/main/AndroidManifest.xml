@@ -3,24 +3,25 @@
     package="com.fougas.decoder">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/appName"
         android:supportsRtl="true"
-        android:theme="@style/MaterialCustom">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EndCallActivity" />
-        <activity android:name=".ParameterActivity" />
-        <activity android:name=".DisplayActivity" />
-        <activity android:name=".HelpActivity" />
+        <activity android:name=".Activity.DisplayActivity" />
+        <activity android:name=".Activity.EndCallActivity" />
+        <activity android:name=".Activity.ParameterActivity"></activity>
     </application>
 
 </manifest>

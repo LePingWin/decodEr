@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fougas.decoder;
+package com.fougas.decoder.Service;
 
 import android.app.Service;
 import android.content.Context;
@@ -28,6 +28,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.fougas.decoder.R;
 import com.google.auth.Credentials;
 import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -325,7 +327,7 @@ public class SpeechService extends Service {
             // folder of this client app. You should never do this in your app. Instead, store
             // the file in your server and obtain an access token from there.
             // *******************
-            final InputStream stream = getResources().openRawResource(R.raw.credential);
+            final InputStream stream = getResources().openRawResource(R.raw.audio); // TODO replace file audio with credential.json
             try {
                 final GoogleCredentials credentials = GoogleCredentials.fromStream(stream)
                         .createScoped(SCOPE);
