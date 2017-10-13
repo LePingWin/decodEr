@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -26,7 +26,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class DisplayActivity extends AppCompatActivity implements MessageDialogFragment.Listener {
+public class DisplayActivity extends FragmentActivity implements MessageDialogFragment.Listener {
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
 
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
@@ -295,9 +295,10 @@ public class DisplayActivity extends AppCompatActivity implements MessageDialogF
                                     mText.setText(null);
                                 } else {
                                     mText.setText(text);
+                                    Log.d("TRAD",text);
 
                                 }
-                                Log.d("TRAD",text);
+
                             }
                         });
                     }
