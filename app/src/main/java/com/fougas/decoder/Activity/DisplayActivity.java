@@ -25,6 +25,7 @@ import com.fougas.decoder.Service.VoiceRecorder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class DisplayActivity extends FragmentActivity implements MessageDialogFragment.Listener {
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
@@ -167,7 +168,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         StringBuilder builder = new StringBuilder();
         String line;
         try {
-            reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri)));
+            reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri), StandardCharsets.UTF_8));
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
             }
