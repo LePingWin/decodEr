@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context="com.fougas.decoder.Activity.ParameterActivity">
+
+    <TextView
+        android:id="@+id/aParaTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/aParaTvTitle"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/aParaTvTranslationLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aParaTvTitle"
+        android:layout_marginTop="50dp"
+        android:text="@string/aParaTvTranslationLanguage"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <FrameLayout
+        android:id="@+id/aParaFlLanguage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aParaTvTranslationLanguage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <Spinner
+            android:id="@+id/aParaSpLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/aParaTvSavePath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aParaFlLanguage"
+        android:layout_marginTop="20dp"
+        android:text="@string/aParaTvSavePath"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/aParaEtSavePath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aParaTvSavePath"
+        android:layout_margin="10dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/aParaBtnSavePath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aParaEtSavePath"
+        android:layout_margin="10dp"
+        android:text="@string/aParaTvSaveNewPath"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+</RelativeLayout>
