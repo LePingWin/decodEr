@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.SpeechService;
+import com.fougas.decoder.Service.TranslationTaskCompleted;
 import com.fougas.decoder.Service.VoiceRecorder;
 
 import java.io.BufferedReader;
@@ -60,6 +61,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
     };
     // View references
     private TextView mText;
+    private TextView mTextTranslated;
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -107,6 +109,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         //mSpeechService.recognizeInputStream(getResources().openRawResource(R.raw.audio));
 
         mText = (TextView) findViewById(R.id.aDispTvText);
+        mTextTranslated = (TextView) findViewById(R.id.aDispTvTranslateText);
 
     }
 
@@ -296,7 +299,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                                 } else {
                                     mText.setText(text);
                                     Log.d("TRAD",text);
-
+                                    new TranslationTaskCompleted(mTextTranslated,text);
                                 }
 
                             }
@@ -306,3 +309,5 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
             };
 
 }
+
+
