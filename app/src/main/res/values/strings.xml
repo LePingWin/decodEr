@@ -30,6 +30,7 @@
     <string name="aParaTvSaveNewPathSaved">New path saved</string>
     <string name="aDispTvTime">00:00:00</string>
     <string name="aDispBtnParameters">Parameters</string>
+    <string name="aDispBtnListen">Listen</string>
     <string name="aDispBtnClose">Close</string>
     <string name="aHelpFaq">
         <b>F.A.Q. - Foire Aux Questions</b>\n
@@ -69,4 +70,9 @@
         2A Promotion 2016-2019</b>\n
     </string>
     <string name="aHelpBtnCancel">Come back</string>
+    <string name="aTransTvTitle">Example Translation</string>
+    <string name="aTransTvSourceText">Text to translate</string>
+    <string name="aTransTvResponseText">Response</string>
+    <string name="aTransBtnLaunch">Launch translation</string>
+    <string name="permission_message">This app needs to record audio and recognize your speech.</string>
 </resources>

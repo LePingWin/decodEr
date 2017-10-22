@@ -1,11 +1,7 @@
 package com.fougas.decoder.Activity;
 
 import android.Manifest;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.fougas.decoder.Model.Langage;
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.Interface.IOnTaskCompleted;

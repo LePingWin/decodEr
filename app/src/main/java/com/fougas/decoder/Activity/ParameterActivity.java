@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.FileUtil;
 

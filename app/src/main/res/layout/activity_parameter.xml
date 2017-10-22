@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/aParaTvSavePathChosen"
         android:layout_margin="10dp"
-        android:text="@string/aParaTvSaveChoosePath"
+        android:text="@string/aParaTvSaveNewPath"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 </RelativeLayout>

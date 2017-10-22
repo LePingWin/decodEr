@@ -1,13 +1,12 @@
 package com.fougas.decoder.Service;
 
 import android.os.AsyncTask;
-
 import com.fougas.decoder.Service.Interface.IOnTaskCompleted;
-
-// Imports the Google Cloud client library
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
+
+// Imports the Google Cloud client library
 
 /**
  * Created by Jean on 15/09/2017.

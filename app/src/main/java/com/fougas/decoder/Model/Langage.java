@@ -1,6 +1,6 @@
 package com.fougas.decoder.Model;
 
-import java.util.*;
+import java.util.HashMap;
 
 /**
   * Language
