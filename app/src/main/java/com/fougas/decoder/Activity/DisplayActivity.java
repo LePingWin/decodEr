@@ -2,8 +2,10 @@ package com.fougas.decoder.Activity;
 
 import android.Manifest;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,25 +20,39 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.fougas.decoder.Model.Langage;
 import com.fougas.decoder.R;
+import com.fougas.decoder.Service.Interface.IOnTaskCompleted;
 import com.fougas.decoder.Service.SpeechService;
-import com.fougas.decoder.Service.TranslationTaskCompleted;
+import com.fougas.decoder.Service.TranslateService;
 import com.fougas.decoder.Service.VoiceRecorder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
-public class DisplayActivity extends FragmentActivity implements MessageDialogFragment.Listener {
+public class DisplayActivity extends FragmentActivity implements MessageDialogFragment.Listener, IOnTaskCompleted  {
     private static final String FRAGMENT_MESSAGE_DIALOG = "message_dialog";
 
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
     private final int FILE_SELECT_CODE = 1;
 
+    private TextView mTranslateText;
+    private SharedPreferences msharedPreferences ;
+    IOnTaskCompleted listener;
+
     private SpeechService mSpeechService;
 
     private VoiceRecorder mVoiceRecorder;
+
+
+
     private final VoiceRecorder.Callback mVoiceCallback = new VoiceRecorder.Callback() {
+
+
+
 
         @Override
         public void onVoiceStart() {
@@ -86,6 +102,14 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         Button aDispBtnClose = (Button) findViewById(R.id.aDispBtnClose);
         Button aDispBtnListen = (Button) findViewById(R.id.aDispBtnListen);
         Button aDispBtnParameters = (Button) findViewById(R.id.aDispBtnParameters);
+
+        mTranslateText = (TextView) findViewById(R.id.aDispTvText);
+
+        listener = this; // Listener for translation
+        msharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
+
+
+
 
         aDispBtnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +194,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         StringBuilder builder = new StringBuilder();
         String line;
         try {
-            reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri)));
+            reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri), StandardCharsets.UTF_8));
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
             }
@@ -297,9 +321,18 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                                 if (isFinal) {
                                     mText.setText(null);
                                 } else {
-                                    mText.setText(text);
+                                    try {
+                                        TranslateService taskGoogleAPITranslate =
+                                                new TranslateService(
+                                                        listener
+                                                        , text
+                                                        , Langage.getELanguage((msharedPreferences.getString(getString(R.string.sharedPreferencesTranslationLanguage), ""))));
+                                        taskGoogleAPITranslate.execute();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                     Log.d("TRAD",text);
-                                    new TranslationTaskCompleted(mTextTranslated,text);
+
                                 }
 
                             }
@@ -308,6 +341,17 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                 }
             };
 
+    @Override
+    public void onTaskCompleted(Object value) {
+        mTranslateText.setText(mTranslateText.getText() + value.toString());
+    }
+
+    /**
+     * Value return when task is completed
+     * @param value Value return when task is completed
+     */
+   /* @Override
+    public void onTaskCompleted(Object value) {
+        mTranslateText.setText(value.toString());
+    }*/
 }
-
-

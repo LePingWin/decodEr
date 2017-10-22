@@ -1,12 +1,13 @@
 package com.fougas.decoder.Service;
 
 import android.os.AsyncTask;
+
 import com.fougas.decoder.Service.Interface.IOnTaskCompleted;
+
+// Imports the Google Cloud client library
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
-
-// Imports the Google Cloud client library
 
 /**
  * Created by Jean on 15/09/2017.
@@ -15,16 +16,19 @@ import com.google.cloud.translate.Translation;
 public class TranslateService extends AsyncTask<Object, Object, Object> {
     private IOnTaskCompleted listener;
     private String mrequest;
+    private String mtargetLangage;
     private static final String API_KEY = "API_KEY";//TODO set API_KEY and secure it
 
     /**
      * Constructor
      * @param listener of calling activity
      * @param request to translate
+     * @param targetLangage is the langage of translation
      */
-    public TranslateService(IOnTaskCompleted listener, String request){
+    public TranslateService(IOnTaskCompleted listener, String request, String targetLangage){
         this.listener=listener;
         this.mrequest=request;
+        this.mtargetLangage = targetLangage;
     }
 
     /**
@@ -40,12 +44,12 @@ public class TranslateService extends AsyncTask<Object, Object, Object> {
         try{
             final Translation translation =
                 translate.translate(mrequest,
-                    Translate.TranslateOption.targetLanguage("fr"));//TODO set dynamically targetLanguage
+                    Translate.TranslateOption.targetLanguage(mtargetLangage));
 
             response = translation.getTranslatedText();
         }
         catch ( Exception e){
-            response = "ERROR 400 API KEY not valid";//TODO change exception message
+            response = "ERROR";//TODO change exception message
         }
         return response;
     }

@@ -2,18 +2,20 @@ package com.fougas.decoder.Activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+
 import com.fougas.decoder.R;
+import com.fougas.decoder.Service.FileUtil;
 
 public class ParameterActivity extends Activity {
 
     private SharedPreferences sharedPreferences;
-    private EditText aParaEtSavePath;
-    private Button aParaBtnSavePath;
+    private TextView aParaTvSavePathChosen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,29 +23,17 @@ public class ParameterActivity extends Activity {
         setContentView(R.layout.activity_parameter);
 
         sharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
-        aParaEtSavePath = (EditText) findViewById(R.id.aParaEtSavePath);
-        aParaBtnSavePath = (Button) findViewById(R.id.aParaBtnSavePath);
+        aParaTvSavePathChosen = (TextView) findViewById(R.id.aParaTvSavePathChosen);
+        Button aParaBtnChoosePath = (Button) findViewById(R.id.aParaBtnChoosePath);
 
         initSpinner();
-        initEtSavePath();
+        initTvChosePath();
 
-        aParaEtSavePath.setOnClickListener(new View.OnClickListener() {
+        aParaBtnChoosePath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Hide keyboard
-                InputMethodManager inputManager = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                aParaBtnSavePath.setVisibility(View.VISIBLE);
-            }
-        });
-        aParaBtnSavePath.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(getString(R.string.sharedPreferencesPath), aParaEtSavePath.getText().toString());
-                editor.apply();
-                aParaBtnSavePath.setVisibility(View.INVISIBLE);
-                Toast.makeText(v.getContext(), getString(R.string.aParaTvSaveNewPathSaved), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+                startActivityForResult(intent, 42);
             }
         });
     }
@@ -78,7 +68,21 @@ public class ParameterActivity extends Activity {
     /**
      * Init the EditText with the current save path
      */
-    private void initEtSavePath() {
-        aParaEtSavePath.setText(sharedPreferences.getString(getString(R.string.sharedPreferencesPath), ""));
+    private void initTvChosePath() {
+        aParaTvSavePathChosen.setText(sharedPreferences.getString(getString(R.string.sharedPreferencesPath), ""));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        if (resultCode == RESULT_OK) {
+            Uri treeUri = resultData.getData();
+
+            String path = FileUtil.getFullPathFromTreeUri(treeUri,this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putString(getString(R.string.sharedPreferencesPath), path);
+            editor.apply();
+            initTvChosePath();
+        }
     }
 }

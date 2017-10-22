@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
      * On click on the button help
      */
     private void onClickBtnHelp() {
-        Intent intent = new Intent(this, EndCallActivity.class);
+        Intent intent = new Intent(this, HelpActivity.class);
         startActivity(intent);
     }
 

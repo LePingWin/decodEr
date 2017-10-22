@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+
 import com.fougas.decoder.R;
 
 public class EndCallActivity extends Activity {

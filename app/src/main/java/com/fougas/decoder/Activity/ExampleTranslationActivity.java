@@ -5,12 +5,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.fougas.decoder.Model.Langage;
 import com.fougas.decoder.R;
 import com.fougas.decoder.Service.Interface.IOnTaskCompleted;
 import com.fougas.decoder.Service.TranslateService;
+
+import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by Jean on 15/09/2017.
@@ -41,7 +46,10 @@ public class ExampleTranslationActivity extends Activity implements IOnTaskCompl
             public void onClick(View v) {
                 try {
                     TranslateService taskGoogleAPITranslate =
-                            new TranslateService(listener, aTransEtSourceText.getText().toString());
+                            new TranslateService(
+                                    listener
+                                    , aTransEtSourceText.getText().toString()
+                                    , Langage.getELanguage((sharedPreferences.getString(getString(R.string.sharedPreferencesTranslationLanguage), ""))));
                     taskGoogleAPITranslate.execute();
                 } catch (Exception e) {
                     e.printStackTrace();
