@@ -1,11 +1,11 @@
-package com.fougas.decoder;
+package com.fougas.decoder.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import com.fougas.decoder.Activity.MainActivity;
+import com.fougas.decoder.R;
 
 public class HelpActivity extends Activity {
 

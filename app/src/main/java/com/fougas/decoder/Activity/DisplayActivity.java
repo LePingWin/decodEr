@@ -326,7 +326,6 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
-                                    Log.d("TRAD",text);
 
                                 }
 
@@ -338,7 +337,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
 
     @Override
     public void onTaskCompleted(Object value) {
-        mTranslateText.setText(mTranslateText.getText() + value.toString());
+        mTranslateText.setText(value.toString());
     }
 
     /**

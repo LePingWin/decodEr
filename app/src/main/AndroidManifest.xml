@@ -22,6 +22,7 @@
         <activity android:name=".Activity.DisplayActivity" />
         <activity android:name=".Activity.EndCallActivity" />
         <activity android:name=".Activity.ParameterActivity"></activity>
+        <activity android:name=".Activity.HelpActivity"></activity>
         <service android:name=".Service.SpeechService"></service>
     </application>
 

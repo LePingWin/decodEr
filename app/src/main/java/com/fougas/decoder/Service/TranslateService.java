@@ -48,7 +48,7 @@ public class TranslateService extends AsyncTask<Object, Object, Object> {
             response = translation.getTranslatedText();
         }
         catch ( Exception e){
-            response = "ERROR";//TODO change exception message
+            response = e.getMessage();
         }
         return response;
     }
