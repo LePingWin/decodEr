@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DecodEr</string>
     <string name="appName">DecodEr</string>
-    <string name="aMainTvInterlocutor">Interlocuteur\'s language</string>
+    <string name="aMainTvInterlocutor">Interlocutor\'s language</string>
     <string name="aMainBtnLaunchTranslation">Launch translation</string>
     <string name="aMainBtnHelp">Help</string>
     <string name="aMainBtnParameters">Parameters</string>

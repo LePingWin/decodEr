@@ -12,7 +12,8 @@
         android:label="@string/appName"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.MainActivity">
+
+        <activity android:name=".Activity.MainActivity" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +25,7 @@
         <activity android:name=".Activity.ParameterActivity"></activity>
         <activity android:name=".Activity.HelpActivity"></activity>
         <service android:name=".Service.SpeechService"></service>
+        <service android:name=".Service.TranslateService"></service>
     </application>
 
 </manifest>

@@ -1,10 +1,17 @@
 package com.fougas.decoder.Service;
 
+import android.app.Service;
+import android.content.Intent;
 import android.os.AsyncTask;
-import com.fougas.decoder.Service.Interface.IOnTaskCompleted;
+import android.os.Binder;
+import android.os.IBinder;
+import android.support.annotation.NonNull;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 // Imports the Google Cloud client library
 
@@ -12,52 +19,104 @@ import com.google.cloud.translate.Translation;
  * Created by Jean on 15/09/2017.
  * Service to translate a request, asyncTask
  */
-public class TranslateService extends AsyncTask<Object, Object, Object> {
-    private IOnTaskCompleted listener;
+public class TranslateService extends Service{
+  /*  private IOnTaskCompleted listener;
     private String mrequest;
-    private String mtargetLangage;
-    private static final String API_KEY = "API_KEY";//TODO set API_KEY and secure it
+    private String mtargetLangage;*/
+    private final ArrayList<Listener> mListeners = new ArrayList<>();
+    private Binder mTranslateBinder = new TranslateBinder();
+    private static final String API_KEY = "";//TODO set API_KEY and secure it
+
+    public interface Listener {
+
+        /**
+         * Called when a new piece of text was recognized by the Translate API.
+         *
+         * @param text    The text.
+         */
+        void onTextTranslated(String text);
+
+    }
+
+    public static TranslateService from(IBinder binder) {
+        return ((TranslateBinder) binder).getService();
+    }
+
 
     /**
      * Constructor
      * @param listener of calling activity
      * @param request to translate
      * @param targetLangage is the langage of translation
-     */
+
     public TranslateService(IOnTaskCompleted listener, String request, String targetLangage){
         this.listener=listener;
         this.mrequest=request;
         this.mtargetLangage = targetLangage;
     }
+    */
 
     /**
      * required method(s)
-     */
+
     @Override
     protected Object doInBackground(Object... params) {
-        String response;
-        TranslateOptions options = TranslateOptions.newBuilder()
-                .setApiKey(API_KEY)
-                .build();
-        Translate translate = options.getService();
-        try{
-            final Translation translation =
-                translate.translate(mrequest,
-                    Translate.TranslateOption.targetLanguage(mtargetLangage));
+        return Translate();
+    }*/
 
-            response = translation.getTranslatedText();
-        }
-        catch ( Exception e){
-            response = e.getMessage();
-        }
-        return response;
+    public void addListener(@NonNull Listener listener) {
+        mListeners.add(listener);
     }
 
-    /**
-     * When task is completed
-     * @param o here response translated by Google API
-     */
-    protected void onPostExecute(Object o){
-        listener.onTaskCompleted(o.toString());
+    public void removeListener(@NonNull Listener listener) {
+        mListeners.remove(listener);
     }
+
+    public void Translate(String request,String targetLanguage) {
+        String response = null;
+        try {
+            response = new TranslateTask().execute(request,targetLanguage).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        for (Listener item : mListeners){
+            item.onTextTranslated(response);
+        }
+
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return mTranslateBinder;
+    }
+
+    private class TranslateBinder extends Binder{
+        TranslateService getService() {return TranslateService.this;}
+    }
+
+    private class TranslateTask extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String response;
+            TranslateOptions options = TranslateOptions.newBuilder()
+                    .setApiKey(API_KEY)
+                    .build();
+            Translate translate = options.getService();
+            try{
+                final Translation translation =
+                        translate.translate(strings[0],
+                                Translate.TranslateOption.targetLanguage(strings[1]));
+
+                response = translation.getTranslatedText();
+            }
+            catch ( Exception e){
+                response = e.getMessage();
+            }
+            return response;
+        }
+    }
+
 }
