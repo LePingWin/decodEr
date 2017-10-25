@@ -142,9 +142,10 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         intent.putExtra("TEXT_TRANSLATED", mTranslatedText.toString());
         intent.putExtra("TEXT_TRANSCRIPTED", mTranscriptedText.toString());
         Duration finalTime = new Duration(mStartTime,DateTime.now());
-        String time = String.format("%02d:%02d:%02d",finalTime.getStandardHours(),finalTime.getStandardMinutes(),finalTime.getStandardSeconds());
+        String time = String.format("%02d:%02d:%02d",finalTime.getStandardHours(),finalTime.getStandardMinutes() % 60,finalTime.getStandardSeconds() % 60);
         intent.putExtra("DURATION",time);
         startActivity(intent);
+        finish();
     }
 
     /**
