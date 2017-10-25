@@ -20,12 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.DisplayActivity" />
-        <activity android:name=".Activity.EndCallActivity" />
-        <activity android:name=".Activity.ParameterActivity"></activity>
-        <activity android:name=".Activity.HelpActivity"></activity>
-        <service android:name=".Service.SpeechService"></service>
-        <service android:name=".Service.TranslateService"></service>
+        <activity android:name=".Activity.DisplayActivity" android:screenOrientation="portrait"  />
+        <activity android:name=".Activity.EndCallActivity" android:screenOrientation="portrait" />
+        <activity android:name=".Activity.ParameterActivity" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".Activity.HelpActivity" android:screenOrientation="portrait" ></activity>
+        <service android:name=".Service.SpeechService" android:screenOrientation="portrait" ></service>
+        <service android:name=".Service.TranslateService" android:screenOrientation="portrait" ></service>
     </application>
 
 </manifest>

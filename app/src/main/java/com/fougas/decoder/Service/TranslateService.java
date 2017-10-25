@@ -20,9 +20,6 @@ import java.util.concurrent.ExecutionException;
  * Service to translate a request, asyncTask
  */
 public class TranslateService extends Service{
-  /*  private IOnTaskCompleted listener;
-    private String mrequest;
-    private String mtargetLangage;*/
     private final ArrayList<Listener> mListeners = new ArrayList<>();
     private Binder mTranslateBinder = new TranslateBinder();
     private static final String API_KEY = "";//TODO set API_KEY and secure it
@@ -41,28 +38,6 @@ public class TranslateService extends Service{
     public static TranslateService from(IBinder binder) {
         return ((TranslateBinder) binder).getService();
     }
-
-
-    /**
-     * Constructor
-     * @param listener of calling activity
-     * @param request to translate
-     * @param targetLangage is the langage of translation
-
-    public TranslateService(IOnTaskCompleted listener, String request, String targetLangage){
-        this.listener=listener;
-        this.mrequest=request;
-        this.mtargetLangage = targetLangage;
-    }
-    */
-
-    /**
-     * required method(s)
-
-    @Override
-    protected Object doInBackground(Object... params) {
-        return Translate();
-    }*/
 
     public void addListener(@NonNull Listener listener) {
         mListeners.add(listener);

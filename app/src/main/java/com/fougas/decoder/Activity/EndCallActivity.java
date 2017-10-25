@@ -21,6 +21,9 @@ public class EndCallActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String textToSave = getIntent().getStringExtra("TEXT_TO_SAVE");
+        String callTime = getIntent().getStringExtra("DURATION");
         setContentView(R.layout.activity_end_call);
 
         sharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
@@ -45,7 +48,7 @@ public class EndCallActivity extends Activity {
                 onClickBtnValidate();
             }
         });
-        aEndTvDuration.setText("39:25");
+        aEndTvDuration.setText(callTime);
 
         aEndSwSaveCall.setChecked(sharedPreferences.getBoolean(getString(R.string.sharedPreferencesSaveCall), false));
         aEndSwSaveTranscription.setChecked(sharedPreferences.getBoolean(getString(R.string.sharedPreferencesSaveTranscription), false));

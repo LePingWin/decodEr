@@ -38,12 +38,6 @@
                     android:text="@string/aDispTvTime"
                     android:textSize="15sp" />
               -->
-            <Button
-                android:id="@+id/aDispBtnListen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/aDispBtnListen" />
         </FrameLayout>
 
         <FrameLayout
@@ -60,59 +54,11 @@
         </FrameLayout>
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/aDispSvText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:textSize="12sp"
-                android:id="@+id/aDispTvText"/>
-    </ScrollView>
-
-    <ScrollView
-            android:id="@+id/aDispTranslateSvText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
     <TextView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textSize="12sp"
-            android:id="@+id/aDispTvTranslateText"/>
-    </ScrollView>
-    <!-- <android.support.design.widget.CoordinatorLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.google.cloud.android.speech.MainActivity">
+            android:textSize="18sp"
+            android:id="@+id/aDispTvText"
+            android:layout_height="match_parent"/>
 
-        <android.support.design.widget.AppBarLayout
-                android:id="@+id/app_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-            <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="32dp"
-                    android:paddingRight="32dp"/>
-
-        </android.support.design.widget.AppBarLayout>
-
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                app:behavior_overlapTop="128dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-    </android.support.design.widget.CoordinatorLayout> -->
 
 </LinearLayout>

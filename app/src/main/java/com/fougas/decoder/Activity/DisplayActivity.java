@@ -10,9 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +18,8 @@ import com.fougas.decoder.R;
 import com.fougas.decoder.Service.SpeechService;
 import com.fougas.decoder.Service.TranslateService;
 import com.fougas.decoder.Service.VoiceRecorder;
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,8 +32,9 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
     private final int FILE_SELECT_CODE = 1;
 
-    private TextView mTranslateText;
     private SharedPreferences msharedPreferences ;
+
+    private DateTime mStartTime = DateTime.now();
 
     private SpeechService mSpeechService;
     private TranslateService mTranslateService;
@@ -44,11 +44,10 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
     private String mTranscriptionLanguageCode;
     private String mTranslationLanguageCode;
 
+    private final StringBuilder mTranslatedText = new StringBuilder();
+    private final StringBuilder mTranscriptedText = new StringBuilder();
 
     private final VoiceRecorder.Callback mVoiceCallback = new VoiceRecorder.Callback() {
-
-
-
 
         @Override
         public void onVoiceStart() {
@@ -73,7 +72,6 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
     };
     // View references
     private TextView mText;
-    private TextView mTextTranslated;
 
     private final ServiceConnection mTranslateServiceConnection = new ServiceConnection() {
 
@@ -89,7 +87,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         }
     };
 
-    private final ServiceConnection mServiceConnection = new ServiceConnection() {
+    private final ServiceConnection mSpeechServiceConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder binder) {
@@ -111,14 +109,11 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         setContentView(R.layout.activity_display);
 
         Button aDispBtnClose = (Button) findViewById(R.id.aDispBtnClose);
-        Button aDispBtnListen = (Button) findViewById(R.id.aDispBtnListen);
         Button aDispBtnParameters = (Button) findViewById(R.id.aDispBtnParameters);
 
-        mTranslateText = (TextView) findViewById(R.id.aDispTvText);
         msharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
         mTranscriptionLanguageCode = Langage.getELanguage((msharedPreferences.getString(getString(R.string.sharedPreferencesInterlocutorLanguage),"")));
         mTranslationLanguageCode = Langage.getELanguage((msharedPreferences.getString(getString(R.string.sharedPreferencesTranslationLanguage),"")));
-
 
 
         aDispBtnClose.setOnClickListener(new View.OnClickListener() {
@@ -133,25 +128,20 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                 onClickBtnParameters();
             }
         });
-        aDispBtnListen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickBtnListen();
-            }
-        });
-        //TODO : implements button LOAD audio file
-        //
 
         mText = (TextView) findViewById(R.id.aDispTvText);
-        mTextTranslated = (TextView) findViewById(R.id.aDispTvTranslateText);
 
+        Listen();
     }
 
     /**
      * On click on the button close
      */
     private void onClickBtnClose() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, EndCallActivity.class);
+        intent.putExtra("TEXT_TO_SAVE", mTranslatedText.toString());
+        Duration finalTime = new Duration(mStartTime,DateTime.now());
+        intent.putExtra("DURATION", finalTime);
         startActivity(intent);
     }
 
@@ -159,15 +149,10 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
      * On click on the button parameters
      */
     private void onClickBtnParameters() {
-       // Intent intent = new Intent(this, ParameterActivity.class);
-        //startActivity(intent);
         mSpeechService.recognizeInputStream(getResources().openRawResource(R.raw.audio),mTranscriptionLanguageCode);
     }
 
-    /**
-     * On click on the button listen
-     */
-    private void onClickBtnListen() {
+    private void Listen() {
         // Start listening to voices
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -178,26 +163,6 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
                     REQUEST_RECORD_AUDIO_PERMISSION);
-        }
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Uri uri = null;
-        // Check which request we're responding to
-        if (requestCode == FILE_SELECT_CODE) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                // User pick the file
-                if (data != null) {
-                    uri = data.getData();
-                    fillTextView(readTextFile(uri));
-                }
-
-            } else {
-                Log.i("DEBUG", data.toString());
-            }
         }
     }
 
@@ -225,21 +190,11 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
     }
 
 
-    /**
-     * Allow to fill the textview with a string
-     * @param text The string that will be displayed
-     */
-    private void fillTextView(String text){
-        TextView textView = (TextView) findViewById(R.id.aDispTvText);
-        textView.setText(text);
-    }
-
-
     @Override
     protected void onStart() {
         super.onStart();
         // Prepare Cloud Speech API
-        bindService(new Intent(this, SpeechService.class), mServiceConnection, BIND_AUTO_CREATE);
+        bindService(new Intent(this, SpeechService.class), mSpeechServiceConnection, BIND_AUTO_CREATE);
         bindService(new Intent(this, TranslateService.class), mTranslateServiceConnection, BIND_AUTO_CREATE);
     }
 
@@ -250,7 +205,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
 
         // Stop Cloud Speech API
         mSpeechService.removeListener(mSpeechServiceListener);
-        unbindService(mServiceConnection);
+        unbindService(mSpeechServiceConnection);
         mSpeechService = null;
 
         // Stop Cloud Translate API
@@ -281,22 +236,6 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-           /* case R.id.action_file:
-                mSpeechService.recognizeInputStream(getResources().openRawResource(R.raw.audio));
-                return true;*/
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void startVoiceRecorder() {
         if (mVoiceRecorder != null) {
@@ -329,7 +268,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
             new SpeechService.Listener() {
                 @Override
                 public void onSpeechRecognized(final String text, final boolean isFinal) {
-                    if (isFinal) {
+                    if (isFinal && mVoiceRecorder != null) {
                         mVoiceRecorder.dismiss();
                     }
                     if (mText != null && !TextUtils.isEmpty(text)) {
@@ -337,16 +276,15 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                             @Override
                             public void run() {
                                 if (isFinal) {
-                                    mText.setText(null);
-                                } else {
                                     try {
-                                    mTranslateService.Translate(text,mTranslationLanguageCode);
+                                        mTranscriptedText.append(text);
+                                        mTranscriptedText.append("\n");
+                                        mTranslateService.Translate(text,mTranslationLanguageCode);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
 
                                 }
-
                             }
                         });
                     }
@@ -359,7 +297,10 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mText.setText(text);
+                    mTranslatedText.append(text);
+                    mTranslatedText.append("\n");
+                    mText.setText(null);
+                    mText.setText(mTranslatedText);
                 }
             });
         }
