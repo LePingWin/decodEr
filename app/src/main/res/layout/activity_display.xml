@@ -7,75 +7,62 @@
     android:orientation="vertical"
     tools:context="com.fougas.decoder.Activity.EndCallActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/aDispBtnClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/aDispBtnClose" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <!--
-                <TextView
-                    android:id="@+id/aDispTvTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/aDispTvTime"
-                    android:textSize="15sp" />
-              -->
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/aDispBtnParameters"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/aDispBtnParameters" />
-        </FrameLayout>
-    </LinearLayout>
-
     <TextView
             android:layout_width="match_parent"
             android:textSize="18sp"
             android:id="@+id/aDispTvText"
             android:layout_height="379dp"/>
+
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/tTxtVLinsting" />
+            android:layout_weight="1">
+
+        <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/tTxtVLinsting"/>
 
         <pl.droidsonroids.gif.GifImageView
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/loading"
-            />
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/loading"
+                />
     </FrameLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                    android:id="@+id/aDispBtnClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/aDispBtnClose"/>
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <Button
+                    android:id="@+id/aDispBtnParameters"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="@string/aDispBtnParameters"/>
+        </FrameLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
