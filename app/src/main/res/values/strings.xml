@@ -30,6 +30,7 @@
     <string name="aParaTvSaveNewPathSaved">New path saved</string>
     <string name="aDispTvTime">00:00:00</string>
     <string name="aDispBtnParameters">Parameters</string>
+    <string name="tTxtVLinsting">Listening in progress</string>
     <string name="aDispBtnListen">Listen</string>
     <string name="aDispBtnClose">Close</string>
     <string name="aHelpFaq">

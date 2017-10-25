@@ -125,6 +125,8 @@ dependencies {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
         exclude group: 'com.google.api-client', module: 'google-api-client-appengine'
     }
+    // GIF
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
     // Tests
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test:runner:0.5'

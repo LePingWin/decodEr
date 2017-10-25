@@ -58,7 +58,24 @@
             android:layout_width="match_parent"
             android:textSize="18sp"
             android:id="@+id/aDispTvText"
-            android:layout_height="match_parent"/>
+            android:layout_height="379dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/tTxtVLinsting" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/loading"
+            />
+    </FrameLayout>
 
 
 </LinearLayout>
