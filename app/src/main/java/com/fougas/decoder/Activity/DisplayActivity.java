@@ -139,9 +139,11 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
      */
     private void onClickBtnClose() {
         Intent intent = new Intent(this, EndCallActivity.class);
-        intent.putExtra("TEXT_TO_SAVE", mTranslatedText.toString());
+        intent.putExtra("TEXT_TRANSLATED", mTranslatedText.toString());
+        intent.putExtra("TEXT_TRANSCRIPTED", mTranscriptedText.toString());
         Duration finalTime = new Duration(mStartTime,DateTime.now());
-        intent.putExtra("DURATION", finalTime);
+        String time = String.format("%02d:%02d:%02d",finalTime.getStandardHours(),finalTime.getStandardMinutes(),finalTime.getStandardSeconds());
+        intent.putExtra("DURATION",time);
         startActivity(intent);
     }
 

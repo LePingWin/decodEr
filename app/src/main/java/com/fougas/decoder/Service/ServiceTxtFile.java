@@ -2,6 +2,7 @@ package com.fougas.decoder.Service;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.widget.Toast;
 
 import java.io.*;
 
@@ -52,7 +53,7 @@ import java.io.*;
          * @return <String> which content text in file.txt
          */
         public static void write(Context fileContext, String nameFile, String content ) {
-            String fileNameStr="MyFileName";
+            String fileNameStr=nameFile;
             String fileContentStr=content;
             try {
 
@@ -73,5 +74,29 @@ import java.io.*;
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        public static void writeAndCreate(Context context,String absolutePath, String content ) {
+
+            try {
+                File file = new File(absolutePath);
+                if(!file.exists()) file.createNewFile();
+                FileWriter fw = new FileWriter(file);
+                fw.append(content);
+                fw.close();
+                Toast.makeText(context, "Saved at " + absolutePath, Toast.LENGTH_SHORT).show();
+            } catch(Exception e){
+                Toast.makeText(context, "Impossible to save at " + absolutePath, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public static String getFilePath(String fileDir,String fileName){
+                File file = new File("/",fileDir);
+
+                if(!file.exists()){
+                    file.mkdirs();
+                }
+
+                return (file.getAbsolutePath() + "/" + fileName);
         }
     }
