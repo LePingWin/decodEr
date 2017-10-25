@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -299,7 +300,11 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mTranslatedText.append(text);
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        mTranslatedText.append(Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY)).toString();
+                    } else {
+                        mTranslatedText.append(Html.fromHtml(text).toString());
+                    }
                     mTranslatedText.append("\n");
                     mText.setText(null);
                     mText.setText(mTranslatedText);
