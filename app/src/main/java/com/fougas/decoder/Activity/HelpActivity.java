@@ -12,7 +12,8 @@ public class HelpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         Button aHelpBtnCancel = (Button) findViewById(R.id.aHelpBtnCancel);
         aHelpBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +29,12 @@ public class HelpActivity extends Activity {
     private void onClickBtnCancel() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onNavigateUp() {
+        finish();
+        return true;
     }
 
 }

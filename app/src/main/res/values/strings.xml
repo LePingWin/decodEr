@@ -26,7 +26,7 @@
     <string name="sharedPreferencesSaveCall">SaveCall</string>
     <string name="sharedPreferencesSaveTranscription">SaveTranscription</string>
     <string name="sharedPreferencesSaveTranslation">SaveTranslation</string>
-    <string name="aParaTvSaveNewPath">Save new path</string>
+    <string name="aParaTvSaveNewPath">Choose new save path</string>
     <string name="aParaTvSaveNewPathSaved">New path saved</string>
     <string name="aDispTvTime">00:00:00</string>
     <string name="aDispBtnParameters">Load Example File</string>
@@ -40,27 +40,27 @@
         1) A quoi sert cette application decodEr \? \n
         <i>Notre application sert à traduire un appel sous format texte sur son téléphone.</i>\n
         \n
-        2) Comment traduire / choisir la langue ? \n
-        <i>Il faut choisir la langue de l\'interlocuteur dans la page d\'accueil ou dans les paramètres de l\'application.</i>\n
+        2) Pourquoi choisir la langue de l'interlocuteur ? \n
+        <i>Pour une meilleure traduction, choisissez la langue de l\'interlocuteur dans la page d\'accueil.</i>\n
         \n
-        3) A quoi correspond le chemin dans les paramètres ?\n
+        3) Comment choisir la langue de traduction ?\n
+        <i>Dans les paramètres de l\'application, sélectionnez la langue de traduction</i>\n
+        \n
+        4) A quoi correspond le chemin dans les paramètres ?\n
         <i>Ce chemin correspond au dossier où le fichier texte de la traduction de l\' appel sera enregistré.</i>\n
         \n
-        4) A quoi sert le timer situé au dessus de la traduction ?\n
-        <i>Le timer correspond à la durée  de l\'appel.</i>\n
-        \n
         5) Quelle version d\'android decoder utilise t elle ? \n
-        <i>Android 21.</i>\n
+        <i>Android 6.</i>\n
 
         \n
         \n
         Application decodEr crée par \n
-         - Loic Bine, \n
-         - Quentin Dell, \n
-         - Antoine Horvat, \n
-         - Sarah Mesbah, \n
-         - William Muller, \n
-         - et Jean Still. \n
+         - Loic Bine \n
+         - Quentin Dell \n
+         - Antoine Horvat \n
+         - Sarah Mesbah \n
+         - William Muller \n
+         - Jean Still \n
         Elle a été réalisé dans le cadre du projet Alcatel de deuxième année du CNAM Grand Est. \n
         \n
         \n

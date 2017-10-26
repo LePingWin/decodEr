@@ -20,6 +20,7 @@ public class ParameterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameter);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         sharedPreferences = getSharedPreferences(getString(R.string.appName), Context.MODE_PRIVATE);
         aParaTvSavePathChosen = (TextView) findViewById(R.id.aParaTvSavePathChosen);
@@ -82,6 +83,13 @@ public class ParameterActivity extends Activity {
             editor.putString(getString(R.string.sharedPreferencesPath), path);
             editor.apply();
             initTvChosePath();
+            Toast.makeText(getApplicationContext(),"New Path Chosen : "+path,Toast.LENGTH_SHORT);
         }
+    }
+
+    @Override
+    public boolean onNavigateUp() {
+        finish();
+        return true;
     }
 }

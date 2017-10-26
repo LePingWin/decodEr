@@ -13,6 +13,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import com.fougas.decoder.Model.Langage;
 import com.fougas.decoder.R;
@@ -41,6 +42,11 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
     private TranslateService mTranslateService;
 
     private VoiceRecorder mVoiceRecorder;
+
+    private ScrollView mScroll;
+
+    private TextView mText;
+    private TextView mLiveText;
 
     private String mTranscriptionLanguageCode;
     private String mTranslationLanguageCode;
@@ -72,7 +78,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         }
     };
     // View references
-    private TextView mText;
+
 
     private final ServiceConnection mTranslateServiceConnection = new ServiceConnection() {
 
@@ -108,6 +114,7 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_display);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button aDispBtnClose = (Button) findViewById(R.id.aDispBtnClose);
         Button aDispBtnParameters = (Button) findViewById(R.id.aDispBtnParameters);
@@ -131,6 +138,8 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         });
 
         mText = (TextView) findViewById(R.id.aDispTvText);
+        mLiveText= (TextView) findViewById(R.id.aLiveTvText);
+        mScroll = (ScrollView) findViewById(R.id.aScrollText);
 
         Listen();
     }
@@ -281,13 +290,17 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                             public void run() {
                                 if (isFinal) {
                                     try {
+                                        mLiveText.setText(null);
                                         mTranscriptedText.append(text);
                                         mTranscriptedText.append("\n");
+                                        mScroll.fullScroll(View.FOCUS_DOWN);
                                         mTranslateService.Translate(text,mTranslationLanguageCode);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
 
+                                }else{
+                                    mLiveText.setText(text);
                                 }
                             }
                         });
@@ -309,9 +322,15 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
                     mTranslatedText.append("\n");
                     mText.setText(null);
                     mText.setText(mTranslatedText);
+                    mScroll.fullScroll(View.FOCUS_DOWN);
                 }
             });
         }
     };
 
+    @Override
+    public boolean onNavigateUp() {
+        finish();
+        return true;
+    }
 }

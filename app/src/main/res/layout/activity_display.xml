@@ -7,11 +7,38 @@
     android:orientation="vertical"
     tools:context="com.fougas.decoder.Activity.EndCallActivity">
 
-    <TextView
+    <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:textSize="18sp"
-            android:id="@+id/aDispTvText"
-            android:layout_height="379dp"/>
+            android:layout_height="40dp"
+            android:layout_margin="5dp">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:textSize="18sp"
+                android:id="@+id/aLiveTvText"
+                android:layout_height="match_parent"
+                android:textColor="@color/status_hearing"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:layout_margin="5dp">
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:id="@+id/aScrollText">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="18sp"
+                    android:id="@+id/aDispTvText"
+                    android:layout_height="match_parent"/>
+
+        </ScrollView>
+    </android.support.v7.widget.CardView>
 
     <FrameLayout
             android:layout_width="match_parent"
