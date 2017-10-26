@@ -22,9 +22,9 @@
         android:layout_marginTop="48dp"
         android:text="@string/aParaTvTranslationLanguage"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:layout_below="@+id/aParaTvTitle"
-        android:layout_alignStart="@+id/aParaFlLanguage" />
+        android:layout_centerHorizontal="true" />
 
     <FrameLayout
         android:id="@+id/aParaFlLanguage"
@@ -45,12 +45,12 @@
         android:id="@+id/aParaTvSavePath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/aParaFlLanguage"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="47dp"
         android:text="@string/aParaTvSavePath"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        android:layout_below="@+id/aParaFlLanguage"
-        android:layout_centerHorizontal="true" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/aParaTvSavePathChosen"
