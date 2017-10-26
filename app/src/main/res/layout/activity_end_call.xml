@@ -8,8 +8,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="125dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +67,10 @@
             <LinearLayout
                 android:id="@+id/aEndLlSaveTranscription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="17dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -78,7 +80,7 @@
                     android:text="@string/aEndSwSaveTranscription"
                     android:textAlignment="textEnd"
                     android:textColor="@color/colorAccent"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -88,8 +90,11 @@
 
                     <Switch
                         android:id="@+id/aEndSwSaveTranscription"
+
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:theme="@style/SwitchTheme"
+                        />
                 </FrameLayout>
             </LinearLayout>
 
@@ -97,7 +102,9 @@
                 android:id="@+id/aEndLlSaveTranslation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/aEndLlSaveTranscription">
+                android:layout_marginTop="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
 
                 <TextView
                     android:layout_width="0dp"
@@ -107,7 +114,7 @@
                     android:text="@string/aEndSwSaveTranslation"
                     android:textAlignment="textEnd"
                     android:textColor="@color/colorAccent"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -118,7 +125,8 @@
                     <Switch
                         android:id="@+id/aEndSwSaveTranslation"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:theme="@style/SwitchTheme" />
                 </FrameLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -126,21 +134,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/aEndRlSwitch"
-            android:layout_marginTop="20dp">
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
             <Button
+                android:id="@+id/aEndBtnCancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/aEndBtnCancel"
                 android:text="@string/aEndBtnCancel"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
+
             <Button
                 android:id="@+id/aEndBtnValidate"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/aEndBtnValidate"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp" />

@@ -4,4 +4,11 @@
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:colorAccent">@color/colorAccent</item>
     </style>
+    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
+        <!-- You can also set colorControlNormal, colorControlActivated
+             colorControlHighlight, and colorSwitchThumbNormal. -->
+        <item name="colorControlActivated">@color/switchOn</item>
+        <item name="colorControlHighlight">@color/switchOff</item>
+        <item name="android:colorForeground">@color/switchOff</item>
+    </style>
 </resources>

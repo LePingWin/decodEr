@@ -19,11 +19,12 @@
         android:id="@+id/aParaTvTranslationLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/aParaTvTitle"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="48dp"
         android:text="@string/aParaTvTranslationLanguage"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/aParaTvTitle"
+        android:layout_alignStart="@+id/aParaFlLanguage" />
 
     <FrameLayout
         android:id="@+id/aParaFlLanguage"
@@ -37,24 +38,30 @@
             android:id="@+id/aParaSpLanguage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </FrameLayout>
 
     <TextView
         android:id="@+id/aParaTvSavePath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/aParaFlLanguage"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="47dp"
         android:text="@string/aParaTvSavePath"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/aParaFlLanguage"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/aParaTvSavePathChosen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/aParaTvSavePath"
-        android:layout_margin="10dp"
+        android:layout_below="@+id/aParaTvSavePath"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 
@@ -62,9 +69,12 @@
         android:id="@+id/aParaBtnChoosePath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/aParaTvSavePathChosen"
-        android:layout_margin="10dp"
         android:text="@string/aParaTvSaveNewPath"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/aParaTvSavePathChosen"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
