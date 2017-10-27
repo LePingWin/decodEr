@@ -69,8 +69,7 @@ public class EndCallActivity extends Activity {
      * On click on the button Cancel
      */
     private void onClickBtnCancel() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     /**

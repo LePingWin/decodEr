@@ -1,7 +1,6 @@
 package com.fougas.decoder.Activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,8 +26,7 @@ public class HelpActivity extends Activity {
      * On click on the button Cancel
      */
     private void onClickBtnCancel() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override
