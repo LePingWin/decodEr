@@ -114,7 +114,6 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_display);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button aDispBtnClose = (Button) findViewById(R.id.aDispBtnClose);
         Button aDispBtnParameters = (Button) findViewById(R.id.aDispBtnParameters);
@@ -328,9 +327,4 @@ public class DisplayActivity extends FragmentActivity implements MessageDialogFr
         }
     };
 
-    @Override
-    public boolean onNavigateUp() {
-        finish();
-        return true;
-    }
 }
