@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">DecodEr</string>
-    <string name="appName">DecodEr</string>
+    <string name="app_name">TranSpeech</string>
+    <string name="appName">TranSpeech</string>
     <string name="aMainTvInterlocutor">Caller\'s language</string>
     <string name="aMainBtnLaunchTranslation">Launch translation</string>
     <string name="aMainBtnHelp">Help</string>
@@ -37,7 +37,7 @@
         <b>F.A.Q. - Foire Aux Questions</b>\n
         \n
         \n
-        1) A quoi sert cette application decodEr \? \n
+        1) A quoi sert cette application TranSpeech \? \n
         <i>Notre application sert à traduire un appel sous format texte sur son téléphone.</i>\n
         \n
         2) Pourquoi choisir la langue de l\'interlocuteur ? \n
@@ -49,12 +49,12 @@
         4) A quoi correspond le chemin dans les paramètres ?\n
         <i>Ce chemin correspond au dossier où le fichier texte de la traduction de l\' appel sera enregistré.</i>\n
         \n
-        5) Quelle version d\'android decoder utilise t elle ? \n
+        5) Quelle version d\'android TranSpeech utilise t elle ? \n
         <i>Android 6.</i>\n
 
         \n
         \n
-        Application decodEr crée par \n
+        Application TranSpeech crée par \n
          - Loic Bine \n
          - Quentin Dell \n
          - Antoine Horvat \n

@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
     private void initSharedPreferences() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (sharedPreferences.getString(getString(R.string.sharedPreferencesPath), "").isEmpty()) {
-            editor.putString(getString(R.string.sharedPreferencesPath), "/decodErSaves"); // TODO pour choper la racine Environment.getExternalStorageDirectory().getPath() puis ce qu'il y a dans la variable path
+            editor.putString(getString(R.string.sharedPreferencesPath), "/TranSpeechSaves");
             editor.apply();
         }
         if (sharedPreferences.getString(getString(R.string.sharedPreferencesTranslationLanguage), "").isEmpty()) {
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
      * On click on the button to launch translation
      */
     private void onClickBtnLaunchTranslation() {
-        Intent intent = new Intent(this, DisplayActivity.class); //TODO create final View
+        Intent intent = new Intent(this, DisplayActivity.class);
         startActivity(intent);
     }
 
